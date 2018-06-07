@@ -1,0 +1,59 @@
+\documentclass[epic,eepic,aspectratio=169,12pt]{beamer}
+\usepackage[polish]{babel}
+\usepackage[T1]{polski}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{color}
+\usepackage{picture}
+\usepackage{graphicx}
+\usepackage{minibox}
+\usepackage{csquotes}
+\usetheme{Warsaw}
+\usecolortheme{crane}
+
+\usepackage[]{csquotes}
+\DeclareQuoteAlias{german}{polish}
+\usepackage[%style=numeric %,authoryear,  alphabetic, authoryear, ect.
+sorting=nty,
+isbn=true,
+backend=biber]{biblatex}
+
+
+\begin{document}
+	\title{Monitoring aplikacji}
+	\subtitle{Prometheus}
+	\author{Krzysztof Pobożan}
+\begin{frame}
+	\maketitle
+\end{frame}
+\begin{frame}{Agenda}
+	\begin{itemize}
+		\item Wstęp
+		\item Czym jest Prometheus
+		\item Rodzaje metryk
+		\item Agregacja, Alerty i jak używać metryk
+		\item DEMO
+	\end{itemize}
+\end{frame}
+\section{Wstęp}
+\begin{frame}{Wstęp}
+	Potrzebujemy narzędzia do śledzenia zachowania się systemu.
+\end{frame}
+\section{Czym jest Prometheus}
+\begin{frame}{Czym jest Prometheus}
+	\begin{itemize}
+		\item Open Source \pause
+		\item Monitoring \pause		
+		\item Alerty
+	\end{itemize}
+\end{frame}
+\begin{frame}{Możliwośći Prometheusa}
+	\begin{itemize}
+		\item  wielowymiarowy model danych
+		\item  elastyczny język zapytań
+		\item nie bazuje na rozproszonym dysku - każdy serwer jest niezależny
+		\item serie czasowe zbierane w modelu PULL
+		\item cele są wykrywane poprzez Discovery Service lub statycznie.
+	\end{itemize}
+\end{frame}
+\end{document}
