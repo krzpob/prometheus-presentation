@@ -11,13 +11,15 @@
 \usetheme{Warsaw}
 \usecolortheme{crane}
 
+\usepackage{listings}
+
 \usepackage[]{csquotes}
 \DeclareQuoteAlias{german}{polish}
 \usepackage[%style=numeric %,authoryear,  alphabetic, authoryear, ect.
 sorting=nty,
 isbn=true,
 backend=biber]{biblatex}
-
+\lstset{language=Java}
 
 \begin{document}
 	\title{Monitoring aplikacji}
@@ -32,7 +34,7 @@ backend=biber]{biblatex}
 		\item Czym jest Prometheus
 		\item Rodzaje metryk
 		\item Agregacja, Alerty i jak używać metryk
-		\item DEMO
+
 	\end{itemize}
 \end{frame}
 \section{Wstęp}
@@ -52,7 +54,7 @@ backend=biber]{biblatex}
 		\item  wielowymiarowy model danych
 		\item  elastyczny język zapytań
 		\item nie bazuje na rozproszonym dysku - każdy serwer jest niezależny
-		\item serie czasowe zbierane w modelu PULL
+		\item serie czasowe zbierane w modelu PULL po HTTP
 		\item cele są wykrywane poprzez Discovery Service lub statycznie.
 	\end{itemize}
 \end{frame}
@@ -69,13 +71,37 @@ backend=biber]{biblatex}
 \begin{frame}{Architektura}
 		\begin{figure}
 			\centering
-			\includegraphics[width=0.7\linewidth]{architecture}
+			\includegraphics[width=0.55\linewidth]{architecture}
 			\caption{Architectura prometheusa}
 			\label{fig:architecture}
 		\end{figure}
 \end{frame}
-\begin{frame}{Konfiguracja serwera}
-	DEMO 1
+\begin{frame}[fragile]{Konfiguracja serwera - joby}
+	\begin{verbatim}
+scrape_configs:		
+  - job_name: 'prometheus'
+    static_configs:
+    - targets: ['localhost:9090']		
+  - job_name: 'jumping-turtle'
+    metrics_path: /actuator/prometheus
+    static_configs:
+      - targets: ['coreos05.wyborcza.pl:8081', 'localhost:8080']
+	  - labels:
+        service: jumping-turtle
+	\end{verbatim}
+\end{frame}
+\begin{frame}[fragile]{Alerty}
+	\begin{verbatim}
+		rule_files:
+		  - "alerts.rules.yml"		  
+	\end{verbatim}
+	Alerty:
+	\begin{verbatim}
+	alerting:
+	  alertmanagers:
+	    - static_configs:
+	      - targets: ['localhost:9093']
+	\end{verbatim}
 \end{frame}
 \section{Rodzaje metryk}
 \begin{frame}{Rodzaje metryk}
@@ -87,7 +113,21 @@ backend=biber]{biblatex}
 	\end{itemize}
 \end{frame}
 \section{Agregacja, Alerty i jak używać metryk}
-\begin{frame}{Agregacje}
-	
+\begin{frame}[fragile]{POM}
+	\begin{lstlisting}[language=XML]
+<dependency>
+  <groupId>io.micrometer</groupId>
+  <artifactId>micrometer-registry-prometheus</artifactId>
+  <version>${micrometer.version}</version>
+</dependency>
+	\end{lstlisting}
+\end{frame}
+\begin{frame}[fragile]{Obsługa annotacji @Timed}
+		\begin{lstlisting}
+@Bean
+public TimedAspect timedAspect(MeterRegistry registry) {
+	return new TimedAspect(registry);
+}
+		\end{lstlisting}
 \end{frame}
 \end{document}
