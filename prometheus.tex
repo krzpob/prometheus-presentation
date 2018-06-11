@@ -22,9 +22,9 @@ backend=biber]{biblatex}
 \lstset{language=Java}
 
 \begin{document}
-	\title{Monitoring aplikacji}
-	\subtitle{Prometheus}
-	\author{Krzysztof Pobożan}
+	\title{Prometheus i monitorowanie aplikacji}
+	\subtitle{na podstawie prelekcji JOTB 2018}
+	\author{Krzysztof Pobożan, Marcin Przybylski}
 \begin{frame}
 	\maketitle
 \end{frame}
@@ -32,14 +32,15 @@ backend=biber]{biblatex}
 	\begin{itemize}
 		\item Wstęp
 		\item Czym jest Prometheus
+		\item Architektura
 		\item Rodzaje metryk
-		\item Agregacja, Alerty i jak używać metryk
+		\item Implementacje klienckie
 
 	\end{itemize}
 \end{frame}
 \section{Wstęp}
 \begin{frame}{Wstęp}
-	Potrzebujemy narzędzia do śledzenia zachowania się systemu.
+	Potrzebujemy narzędzia do śledzenia zachowania się systemu, które  będzie pobierać jego metryki i ewentualnie w ramach ich analizy publikować alert.
 \end{frame}
 \section{Czym jest Prometheus}
 \begin{frame}{Czym jest Prometheus}
@@ -67,7 +68,7 @@ backend=biber]{biblatex}
 		\item Narzędzia wspierające
 	\end{itemize}
 \end{frame}
-\section{Arhitektura}
+\section{Architektura}
 \begin{frame}{Architektura}
 		\begin{figure}
 			\centering
@@ -112,8 +113,20 @@ scrape_configs:
 		\item Summary - okno czasowe
 	\end{itemize}
 \end{frame}
-\section{Agregacja, Alerty i jak używać metryk}
-\begin{frame}[fragile]{POM}
+\section{Klienci Prometheusa}
+\begin{frame}{Klienci Prometheusa}
+	Oficjalne dostępni w Go, Scali, Javie, Ruby
+	Nieoficjalni C++, Haskell, Erlang, Node.js, .Net		
+\end{frame}
+\begin{frame}{Micrometer}	
+	\begin{itemize}
+		\item Fasada dla kilkunastu systemów monitoringu
+		\item Dostępna poprzez interfejs MeterRegistry
+		\item Implementacje rodzajów metryk i ich specjalizacji
+		\item Zintegrowany ze Springiem
+	\end{itemize}
+\end{frame}
+\begin{frame}[fragile]{Konfiguracja POM Micrometer}
 	\begin{lstlisting}[language=XML]
 <dependency>
   <groupId>io.micrometer</groupId>
