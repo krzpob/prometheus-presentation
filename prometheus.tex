@@ -115,8 +115,16 @@ scrape_configs:
 \end{frame}
 \section{Klienci Prometheusa}
 \begin{frame}{Klienci Prometheusa}
-	Oficjalne dostępni w Go, Scali, Javie, Ruby
-	Nieoficjalni C++, Haskell, Erlang, Node.js, .Net		
+	Oficjalne dostępni w: Go, Scali, Javie, Ruby\\
+	Nieoficjalni: C++, Haskell, Erlang, Node.js, .Net		
+\end{frame}
+\begin{frame}{Eskporterzy}
+	\begin{itemize}
+		\item Bazy danych: MySQL (oficjalny), MongoDB, MSSQL, OracleDB, PostgreSQL, Redis, Elasticsearch
+		\item Kolejki: Kafka, RabbitMQ 
+		\item inne systemy monitorujące: Graphite, InfluxDB, Nagios, SNMP (oficjalny)
+		\item pozostałe: Jenkins, JIRA,  HAProxy, Rancher, Docker Hub, Docker Cloud 
+	\end{itemize}
 \end{frame}
 \begin{frame}{Micrometer}	
 	\begin{itemize}
@@ -124,6 +132,7 @@ scrape_configs:
 		\item Dostępna poprzez interfejs MeterRegistry
 		\item Implementacje rodzajów metryk i ich specjalizacji
 		\item Zintegrowany ze Springiem
+		\item Dedykowany endpoint dla prometheusa
 	\end{itemize}
 \end{frame}
 \begin{frame}[fragile]{Konfiguracja POM Micrometer}
