@@ -56,4 +56,38 @@ backend=biber]{biblatex}
 		\item cele są wykrywane poprzez Discovery Service lub statycznie.
 	\end{itemize}
 \end{frame}
+\begin{frame}{Elementy Prometheusa}
+	\begin{itemize}
+		\item Główny serwer zbierający dane
+		\item Biblioteki klienckie zbierające dane
+		\item Baramka push dla krótko żyjących zadań
+		\item Alertmanager
+		\item Narzędzia wspierające
+	\end{itemize}
+\end{frame}
+\section{Arhitektura}
+\begin{frame}{Architektura}
+		\begin{figure}
+			\centering
+			\includegraphics[width=0.7\linewidth]{architecture}
+			\caption{Architectura prometheusa}
+			\label{fig:architecture}
+		\end{figure}
+\end{frame}
+\begin{frame}{Konfiguracja serwera}
+	DEMO 1
+\end{frame}
+\section{Rodzaje metryk}
+\begin{frame}{Rodzaje metryk}
+	\begin{itemize}
+		\item Licznik - funkcja niemalejąca
+		\item Gaugage - konkrentne wartości
+		\item histogram - pakiety po x próbek
+		\item Summary - okno czasowe
+	\end{itemize}
+\end{frame}
+\section{Agregacja, Alerty i jak używać metryk}
+\begin{frame}{Agregacje}
+	
+\end{frame}
 \end{document}
