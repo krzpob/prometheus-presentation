@@ -1,0 +1,46 @@
+\documentclass[12pt,a4paper,notitlepage,onecolumn]{article}
+\usepackage[T1]{polski}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\author{Krzysztof Pobożan, Marcin Przybylski}
+\title{Demo monitoringu na przykładzie środowiska testowego squid i pay}
+\begin{document}
+	\maketitle
+	
+	\section{Konsola prometheus}
+	(mozna jako pierwsze jesli po architekturze)
+	\subsection{źródła metryk}
+	http://coreos01.gazeta.pl:9090/targets
+	\subsection{agregacje, promQL}
+	http://coreos01.gazeta.pl:9090/graph
+	Przykłady zapytań jeden z dwa np. czasow zapytan, bledow etc	
+	
+	\section{Wystawione metryki}
+	pigeon
+	
+	turtle?
+	
+	ecard-proxy customowe liczniki bledow http przy ecardzie
+	
+	invoice-proxy, spring boot 1.4 - inna konfiguracja, dodatkowy endpoint pod kolejke od zlecen fakturowacza, zabezpieczenie po basic auth
+	
+	\subsection{wystartowanie apki}
+	wystartowanie apki/endpoint /prometheus w przeglądarce
+	widoczne na /graph w prometheusie
+	
+	\subsection{prezentacja w graphanie}
+	omowienie wykresow
+	
+	
+	\section{Alerty}
+     Pokazanie konfiguracji alertmanagera ze zdefinowanymi alertami.
+     
+     Reczne przekroczenie liczby bledow w ecardzie  rest clientem na ecard-proxy lub zapchanie kolejki zlecen w invoice-proxy -
+      jednoczesnie pokazac zmianę w graphanie
+     
+     jakis czasowy?
+     
+     odebranie maila/powiadomienia na slacku
+     
+\end{document}
