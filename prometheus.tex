@@ -104,13 +104,28 @@ scrape_configs:
 	      - targets: ['localhost:9093']
 	\end{verbatim}
 \end{frame}
+\begin{frame}[fragile]{Reguła dla alertu}
+\begin{verbatim}
+groups:
+  - name: 'example'
+rules:
+  - alert: HighErrorSquidRate
+    expr: jumpingturtle_makeOrder_seconds{class="pl.agora.squid.jumpingturtle.infrastructure.port.DomainOrderProvider", method="makeOrder",quantile="0.95",} > 0.5
+    for: 1m
+    labels:
+      severity: page
+    annotations:
+      summary: High request latency on {{ $labels.instance }}
+
+\end{verbatim}
+\end{frame}
 \section{Rodzaje metryk}
 \begin{frame}{Rodzaje metryk}
 	\begin{itemize}
 		\item Licznik (counter) funkcja incrementacyjna
 		\item Mernik - (gauge) zmiany o konkrentne wartości
 		\item Histogram - pakiety po x próbek
-		\item Summary - okno czasowe
+		\item Zestawienie (summary) - okno czasowe
 	\end{itemize}
 \end{frame}
 \section{Klienci Prometheusa}
@@ -144,7 +159,7 @@ scrape_configs:
 </dependency>
 	\end{lstlisting}
 \end{frame}
-\begin{frame}[fragile]{Obsługa annotacji @Timed}
+\begin{frame}[fragile]{Włączenie obsługi Timera przez annotację}
 		\begin{lstlisting}
 @Bean
 public TimedAspect timedAspect(MeterRegistry registry) {
