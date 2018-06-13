@@ -8,20 +8,18 @@
 \begin{document}
 	\maketitle
 	
-	\section{Konsola prometheus}
-	(mozna jako pierwsze jesli po architekturze)
-	\subsection{źródła metryk}
-	http://coreos01.gazeta.pl:9090/targets
-	\subsection{agregacje, promQL}
-	http://coreos01.gazeta.pl:9090/graph
-	Przykłady zapytań jeden z dwa np. czasow zapytan, bledow etc	
 	
 	\section{Wystawione metryki}
-	pigeon
-	
-	turtle?
-	
 	ecard-proxy customowe liczniki bledow http przy ecardzie
+	
+	pigeon: HealthMetricsConfiguration
+	
+	turtle:
+		\begin{itemize}
+			\item Bean - CoreConfiguration
+			\item @Timed - PaypalPaymentProcessing, DomainOrderProvider
+		\end{itemize}
+	
 	
 	invoice-proxy, spring boot 1.4 - inna konfiguracja, dodatkowy endpoint pod kolejke od zlecen fakturowacza, zabezpieczenie po basic auth
 	
@@ -29,9 +27,19 @@
 	wystartowanie apki/endpoint /prometheus w przeglądarce
 	widoczne na /graph w prometheusie
 	
-	\subsection{prezentacja w graphanie}
-	omowienie wykresow
+
 	
+	\section{Konsola prometheus}
+	
+	\subsection{źródła metryk}
+	http://coreos01.gazeta.pl:9090/targets
+	\subsection{agregacje, promQL}
+	http://coreos01.gazeta.pl:9090/graph
+	Przykłady zapytań jeden z dwa np. czasow zapytan, bledow etc	
+	http://coreos05.wyborcza.pl:8081/actuator/prometheus , jumpingturtle\_makeOrder\_seconds \{class="pl.agora.squid.jumpingturtle.infrastructure.port.DomainOrderProvider",method="makeOrder",quantile="0.95",\}\\
+	https://prometheus.io/docs/prometheus/latest/querying/examples/
+	\section{prezentacja w graphanie}
+		omowienie wykresow
 	
 	\section{Alerty}
      Pokazanie konfiguracji alertmanagera ze zdefinowanymi alertami.
